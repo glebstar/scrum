@@ -2,8 +2,6 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Card_files extends Model {
-
-	//
-
+class Card_files extends Model
+{
 }

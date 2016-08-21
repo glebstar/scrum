@@ -7,7 +7,6 @@ class Projects extends Model
     protected $primaryKey = 'project_id';
 
     protected     $table      = 'projects';
-    //public        $timestamps = false;
     protected     $fillable   = ['project_name'];
     static public $rules      = [
         'project_name' => 'required',

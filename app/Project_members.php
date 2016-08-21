@@ -16,6 +16,11 @@ class Project_members extends Model
         return $this->hasOne('App\User', 'id', 'user_id');
     }
 
+    /**
+     * Function get a project for member
+     *
+     * @return mixed
+     */
     public function project()
     {
         return $this->hasOne('App\Projects', 'project_id', 'project_id');

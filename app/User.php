@@ -32,10 +32,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
+	/**
+	 * Function get projects for user
+	 *
+	 * @return Collection
+	 */
 	public function projects()
 	{
 		$members = $this->hasMany('App\Project_members', 'member_id', 'id')->get();
-
 		$projects = new Collection();
 
 		foreach ($members as $member) {
