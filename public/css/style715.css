@@ -1,0 +1,103 @@
+.boards-container {
+	max-width: 992px;//1024px;
+	margin: 0 auto;
+}
+.boards-container .list-cols {
+	background: #fff;
+	padding: 0 5px;
+}
+
+.boards-container .list-cols .lists {
+	background: #f3f5f7;
+	border: 1px solid #eee;
+	border-radius: 4px;
+	padding: 7px 10px;
+}
+.boards-container .list-cols .lists .list-title {
+    font-family: "Open Sans",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline;
+}
+.boards-container .list-cols .lists .glyphicon {
+	font-size: 12px;
+	padding-left: 10px;
+	color: #cc3333;
+}
+.boards-container .list-cols .lists .list-title:hover, .boards-container .list-cols .lists .glyphicon:hover {
+	opacity: .8;
+	cursor: pointer;
+}
+.boards-container .list-cols .lists .list-head {
+	padding: 0 15px;
+}
+.boards-container .list-cols .lists .title-panel .glyphicon {
+	padding-left: 0;
+	padding-right: 2px;
+	color: #999;
+}
+.boards-container .list-cols .lists .title-panel .number {
+	padding-right: 10px;
+	color: #999;
+}
+.boards-container .list-cols .lists .list-item {
+	background: #fff;
+	padding: 6px 8px;
+	border-radius: 4px;
+	-webkit-box-shadow: 1px 1px 1px -1px #777;	
+	-moz-box-shadow: 1px 1px 1px -1px #777;
+	box-shadow: 1px 1px 1px -1px #777;
+	cursor: pointer;
+	margin-top: 20px;
+}
+.boards-container .list-cols .lists .list-item .title-panel {
+	display: inline-block;
+}
+.boards-container .list-cols .lists .list-item .item-number {
+	color: #999;
+	font-weight: bold;
+	font-size: 15px;
+}
+.boards-container .list-cols .lists .list-item .members-list {
+	margin: 15px 0 10px;
+}
+.boards-container .list-cols .lists .list-item .members-list .member {
+	text-shadow: #6f6f6f 0.02em .02em .02em;
+    color: #cc3333;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid #d7d9db;
+    width: 32px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 4px;
+    padding: 4px 0;
+    margin-left: 4px;
+}
+.boards-container .list-cols .lists .list-item .members-list .member:hover {
+	opacity: .8;
+}
+.boards-container .list-cols .lists .add-card {
+	margin: 15px 0;
+}
+.boards-container .list-cols .lists .add-card:hover {
+	opacity: .8;
+	cursor: pointer;
+}
+.add-card-form textarea {
+    resize: none;
+    padding: 5px;
+    border-radius: 4px;
+    width: 100%;
+}
+.add-card-form .add-card-submit {
+	background-color: #f47564;
+    border: none;
+    color: #fff;
+    padding: 6px 16px;
+    margin-top: 5px;
+}
+.add-card-form .close-button {
+    float: right;
+    margin: 16px 14px 0 0;
+}

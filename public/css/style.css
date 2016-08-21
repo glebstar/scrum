@@ -1,0 +1,287 @@
+.boards-container {
+	max-width: 992px;//1024px;
+	margin: 0 auto;
+}
+.boards-container .list-cols {
+	background: #fff;
+	padding: 0 5px;
+}
+
+.boards-container .list-cols .lists {
+	background: #f3f5f7;
+	border: 1px solid #eee;
+	border-radius: 4px;
+	padding: 7px 10px;
+	min-height: 60px;
+    max-height: 575px;
+
+}
+
+.lists-holder{
+    max-height: 450px;
+    overflow: scroll;
+    overflow-x:hidden;
+}
+
+.boards-container .list-cols .lists .list-title {
+    font-family: "Open Sans",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline;
+}
+.boards-container .list-cols .lists .glyphicon {
+	font-size: 12px;
+	padding-left: 10px;
+	color: #cc3333;
+}
+.boards-container .list-cols .lists .list-title:hover, .boards-container .list-cols .lists .glyphicon:hover {
+	opacity: .8;
+	cursor: pointer;
+}
+.boards-container .list-cols .lists .list-head {
+	padding: 0 15px;
+}
+.boards-container .list-cols .lists .title-panel .glyphicon {
+	padding-left: 0;
+	padding-right: 2px;
+	color: #999;
+}
+.boards-container .list-cols .lists .title-panel .number {
+	padding-right: 10px;
+	color: #999;
+}
+.boards-container .list-cols .lists .list-item {
+	background: #fff;
+	padding: 6px 8px;
+	border-radius: 4px;
+	-webkit-box-shadow: 1px 1px 1px -1px #777;	
+	-moz-box-shadow: 1px 1px 1px -1px #777;
+	box-shadow: 1px 1px 1px -1px #777;
+	cursor: pointer;
+	margin-top: 20px;
+}
+.boards-container .list-cols .lists .list-item .title-panel {
+	display: inline-block;
+}
+.boards-container .list-cols .lists .list-item .item-number {
+	color: #999;
+	font-weight: bold;
+	font-size: 15px;
+}
+.members-list {
+	margin: 15px 0 10px;
+}
+.members-list .member {
+	text-shadow: #6f6f6f 0.02em .02em .02em;
+    color: #cc3333;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid #d7d9db;
+    width: 32px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 4px;
+    padding: 4px 0;
+    margin-left: 4px;
+}
+.members-list .member:hover {
+	opacity: .8;
+}
+.boards-container .list-cols .lists .add-card {
+	margin: 15px 0;
+}
+.boards-container .list-cols .lists .add-card:hover {
+	opacity: .8;
+	cursor: pointer;
+}
+.add-card-form textarea {
+    resize: none;
+    padding: 5px;
+    border-radius: 4px;
+    width: 90%;
+}
+.add-card-form .add-card-submit {
+	background-color: #f47564;
+    border: none;
+    color: #fff;
+    padding: 6px 16px;
+    margin-top: 5px;
+}
+.add-card-form .close-button {
+    float: right;
+    margin: 16px 14px 0 0;
+}
+
+.modal {
+	max-height: none !important ;
+	width: auto;
+	background: transparent !important;
+}
+
+.modal .weight {
+	padding: 0 10px;
+}
+
+.select-wrapper input.select-dropdown {
+	padding: 0 10px;
+	max-width: 502px;
+}
+.thumb.active {
+	top: -40px !important;
+}
+input.datepicker {
+    padding: 0 10px;
+    max-width: 502px;
+}
+.start-card, .status-card, .completed {
+	margin: 0;
+    font-size: 12px;
+    text-align: center;
+    color: #777;
+}
+.status-card .timer {
+	display: inline;
+}
+.completed {
+	color: #fff;
+	background: #4dff4d;
+}
+.pending {
+	background: #ff4d4d;
+}
+.create_project_dropdown{
+	width: 250px !important;
+
+}
+
+#members-dropdown input {
+	color: transparent;
+	width: 40px;
+    margin: 0;
+    height: 32px;
+    padding: 0;
+    background: #d7d9db;
+    margin-left: 4px;
+    margin-top: 4px;
+    border-radius: 4px;
+    border: none;
+    background: url(https://cdn1.iconfinder.com/data/icons/metroicons/black/add.png) no-repeat center;
+    background-size: 24px;
+}
+
+#members-dropdown .caret {
+	display: none;
+}
+
+.dropdown-content.select-dropdown.multiple-select-dropdown.active {
+	min-width: 350px;
+    top: 38px !important;
+}
+
+#members-dropdown .member-label {
+	top: -20px;
+}
+
+#members-dropdown .members-list {
+	margin-bottom: 0;
+}
+
+.status-holder {
+	position: relative;
+}
+
+.change-status {
+	position: absolute;
+    background: #f3f5f7;
+    padding: 10px;
+    top: 20px;
+    border: 1px solid #d7d9db;
+    border-radius: 4px;
+}
+
+.change-status p {
+	margin: 0;
+	font-size: 12px;
+}
+
+#datetimepicker1 .input-group-addon {
+	background: transparent;
+    border: none;
+    border-radius: 0;
+}
+
+.comment-section .add-comment {
+	margin-top: 20px;
+}
+
+.comment-section .members-list {
+    display: inline-block;
+    margin: 0;
+}
+
+.comment-section textarea {
+    resize: none;
+    display: inline-block;
+    width: 80%;
+    vertical-align: middle;
+    margin-left: 10px;
+    height: 70px;
+    padding: 10px;
+}
+
+.comment-section button {
+	background: #26a69a;
+    border: none;
+    color: #fff;
+    padding: 7px;
+    margin-top: 15px;
+    border-radius: 4px;
+}
+
+.comments-list .comment p {
+	display: inline-block;
+    margin-left: 20px;
+    background: #f3f5f7;
+    padding: 6px 8px;
+    border-radius: 4px;
+    max-width: 400px;
+    word-wrap: break-word;
+    vertical-align: top;
+}
+
+.panel-primary>.panel-heading.scrumy-panel {
+    color: #fff;
+    background-color: #cc3333;
+    border-color: #337ab7;
+}
+
+.navbar.navbar-default{
+
+    height: 50px;
+    box-shadow:none;
+
+}
+
+.navbar.navbar-default a{
+
+    font-size: 14px;
+    box-shadow:none;
+
+}
+
+.navbar-brand {
+  float: left;
+  padding: 10px 10px !important;
+  font-size: 18px;
+  line-height: 20px;
+  height: 50px;
+}
+
+.footer{
+    min-height: 40px;
+    background-color: #e7e7e7;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border: 1px;
+}
