@@ -1,17 +1,25 @@
 var timers = [];
-var listHeight = ($('body').height() - ($('header').height() + $('footer').height()) - 90);
 
+/**
+ * show add task form
+ */
 $( ".add-card" ).click(function() {
     $(this).addClass('hidden');
     $(this).next().removeClass('hidden');
     $(this).next().find('textarea').val('').focus();
 });
 
+/**
+ * close add task form
+ */
 $( ".close-button" ).click(function() {
     $(this).parents('.add-card-form').addClass('hidden');
     $(this).parents('.add-card-form').prev().removeClass('hidden');
 });
 
+/**
+ * submit add card
+ */
 $( ".add-card-form form" ).submit(function( event ) {
     event.preventDefault();
 
@@ -37,6 +45,9 @@ $( ".add-card-form form" ).submit(function( event ) {
     }, 'json');
 });
 
+/**
+ * open modal
+ */
 $(document).on("click",".list-item .item-body",function() {
     var card_id = $(this).closest('.list-item').attr('id').replace(/^card-number-(\d+)$/, '$1');
     $('.backlog-button').hide();
@@ -67,6 +78,9 @@ $(document).on("click",".list-item .item-body",function() {
     $('#card-display .card-title-modal').html(title);
 });
 
+/**
+ * move card to Doing
+ */
 $(document).on("click",".start-card",function() {
     var card_id = $(this).closest('.list-item').attr('id').replace(/^card-number-(\d+)$/, '$1');
     var _token = $('meta[name="_token"]').attr('content');
@@ -82,6 +96,9 @@ $(document).on("click",".start-card",function() {
     timers[card_id] = new newtimer($('#card-number-' + card_id + ' .timer'), pausedtimers[card_id]);
 });
 
+/**
+ * move card to Todo or Done
+ */
 $(document).on("click",".double-status",function() {
     var html = $(this).parents('.list-item').find('.item-body').html();
     var target = $(this).data('target');
@@ -107,6 +124,9 @@ $(document).on("click",".double-status",function() {
     $('#'+target).append('<div id="card-number-' + card_id + '" data-column="' + _column + '" class="list-item clearfix"><div class="item-body">'+html+'</div>'+cardTarget+'</div>');
 });
 
+/**
+ * move card to Backlog
+ */
 $(document).on('click', '#to-backlog-btn', function(){
     var _token = $('meta[name="_token"]').attr('content');
     var card_id = $('#members-dropdown').attr('data-card-id');
@@ -119,6 +139,9 @@ $(document).on('click', '#to-backlog-btn', function(){
 
 });
 
+/**
+ * set new date due
+ */
 $(document).on('change', '#datetimepicker1', function(){
     var _token = $('meta[name="_token"]').attr('content');
     var card_id = $('#members-dropdown').attr('data-card-id');
@@ -126,6 +149,9 @@ $(document).on('change', '#datetimepicker1', function(){
     $('#card-number-' + card_id).attr('data-due', $(this).val());
 });
 
+/**
+ * set members to card
+ */
 $(document).on('change','#members-dropdown', function(){
     var _token = $('meta[name="_token"]').attr('content');
     var card_id = $('#members-dropdown').attr('data-card-id');
@@ -169,6 +195,7 @@ $(document).on('change','#members-dropdown', function(){
 jQuery(document).on('click','.status-holder .pending', function(){
     jQuery(this).parent().find('.change-status').removeClass('hidden');
 });
+
 jQuery(document).on('click','.status-holder .change-status p', function(){
     jQuery(this).parents('.status-holder').find('.completed.pending').removeClass('pending').html('Completed');
     jQuery(this).parent().addClass('hidden');
@@ -189,9 +216,11 @@ $(document).ready(function($) {
     $('.caret').html('');
 
     $('#card-display').on('shown.bs.modal', function() {
-
     });
 
+    /**
+     * start timers
+     */
     $('.card-item').each(function(){
         if ('Doing' == $(this).attr('data-column')) {
             var thisId = $(this).attr('id');
