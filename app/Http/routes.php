@@ -16,12 +16,16 @@ Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
 Route::get('register', 'HomeController@register');
 Route::post('saveProject','HomeController@saveProject');
-Route::post('addcard','HomeController@addCard');
-Route::post('changecolumn','HomeController@changeColumn');
-Route::post('changemembers','HomeController@changeMembers');
 //Route::get('board/projectID/{projectID}/userID/{userID}','HomeController@display_board');
-Route::get('board/{id}','HomeController@display_board');
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+Route::group(['middleware' => 'proj'], function(){
+	Route::get('board/{id}','HomeController@display_board');
+	Route::post('addcard','HomeController@addCard');
+	Route::post('changecolumn','HomeController@changeColumn');
+	Route::post('changemembers','HomeController@changeMembers');
+});
