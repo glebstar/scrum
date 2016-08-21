@@ -1,4 +1,4 @@
-<div id="card-number-{{ $card->card_id }}" data-column="{{ $card->card_column }}" class="list-item clearfix">
+<div id="card-number-{{ $card->card_id }}" data-column="{{ $card->card_column }}" data-due="{{ date('m-d-Y H:i:s', $card->due_time)}}" class="list-item clearfix">
     <div class="item-body">
         <p class="item-title">{{ $card->card_title }}</p>
         <div class="clearfix">

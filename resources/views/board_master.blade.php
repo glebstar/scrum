@@ -9,6 +9,7 @@
 		<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
 		<link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
 		<link href="{{ asset('/css/materialize.min.css')}}" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{{ asset('/datetimepicker/jquery.datetimepicker.css')}}" />
 		<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 	</head>
 	<body>
@@ -62,7 +63,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script src=" {{ asset('/custom_js/materialize.min.js') }} "></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
-<script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+<script src="{{ asset('/datetimepicker/build/jquery.datetimepicker.full.js') }}"></script>
 <script  src="{{ asset('/custom_js/timer.js') }}"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script> -->
 <script type="text/javascript">
@@ -108,6 +109,13 @@
 		if ( is_manager && $('#card-number-' + card_id).attr('data-column') == 'Done' ) {
 			$('.backlog-button').show();
 		}
+
+		var due_date = $('#card-number-' + card_id).attr('data-due');
+
+		$('#datetimepicker1').datetimepicker({
+			value: due_date,
+			format: 'm.d.Y H:i:s'
+		});
 
 		$('#members-dropdown').attr('data-card-id', card_id);
 		$('#members-dropdown .inputs').html('');
@@ -168,6 +176,13 @@
 		$('#card-number-' + card_id).remove();
 		$('#backlog-lists').append('<div id="card-number-' + card_id + '" data-column="Backlog" class="list-item clearfix"><div class="item-body">'+html+'</div></div>');
 
+	});
+
+	$(document).on('change', '#datetimepicker1', function(){
+		var _token = $('meta[name="_token"]').attr('content');
+		var card_id = $('#members-dropdown').attr('data-card-id');
+		$.post('/changedue', {card_id: card_id, due: $(this).val(), _token: _token}, function(data){}, 'json');
+		$('#card-number-' + card_id).attr('data-due', $(this).val());
 	});
 
 	$(document).on('change','#members-dropdown', function(){
@@ -232,7 +247,7 @@
 	$(document).ready(function($) {
 	    $('select').material_select();
 	    $('.caret').html('');
-	    $('#datetimepicker1').datetimepicker();
+
 	    $('#card-display').on('shown.bs.modal', function() {
 	    	
 	    });

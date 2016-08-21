@@ -56,8 +56,19 @@ class HomeController extends Controller {
 	}
 	
 	public function display_board($projectId){
+		$cards = Cards::where('project_id', $projectId)->get();
+		$now = \time();
+
+		foreach ($cards as $c) {
+			$dateDue = new \DateTime($c->card_duedate);
+			$c->due_time = $dateDue->getTimestamp ();
+			if($dateDue->getTimestamp () <= $now ) {
+				$c->card_column = 'Backlog';
+			}
+		}
+
 		return view('board', [
-			'cards' => Cards::where('project_id', $projectId)->get(),
+			'cards' => $cards,
 			'projectId' => $projectId,
 			'members' => User::all(),
 			'isManager' => Auth::user()->id == \App\Projects::where('project_id', $projectId)->first()->project_manager_id
@@ -103,10 +114,14 @@ class HomeController extends Controller {
 		if(Request::ajax()){
 			$card_details = Input::all();
 
+			$date = new \DateTime();
+			$dueDate = $date->getTimestamp () + 172800;
+
 			$card = new Cards;
 			$card->card_title = $card_details['card_title'];
 			$card->project_id = $card_details['project_id'];
 			$card->card_column = 'Todo';
+			$card->card_duedate = date('Y-m-d H:i:s', $dueDate);
 			$card->save();
 			return response ()->json (['new_id' => $card->card_id]);
 		}
@@ -163,5 +178,22 @@ class HomeController extends Controller {
 
 			return response ()->json (['response' => 'ok']);
 		}
+	}
+
+	public function changeDue()
+	{
+		$request = Input::all();
+
+		$due = $request['due'];
+		$dueDate = preg_replace ('/^(\d{2})\.(\d{2})\.(\d{4})\s{1}(.+)$/', '$3-$1-$2 $4', $due);
+
+		$card = Cards::where('card_id', $request['card_id'])->first();
+		if ($card) {
+			$card->card_duedate = $dueDate;
+			$card->save();
+		}
+
+
+		return response ()->json (['response' => 'ok']);
 	}
 }

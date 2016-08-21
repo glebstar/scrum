@@ -125,14 +125,11 @@
 		    <label class="member-label">Members</label>
 	    </div>
 	    <div class="input-field col s12">
-	    	<div class='input-group date' id='datetimepicker1'>
-                <input type='text' placeholder="Select a date" class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+	    	<div class='input-group date'>
+                <input id="datetimepicker1" type="text" >
             </div>
 	    </div>
-	<!--
+
 	    <div class="input-field col s12" id="priority">
 		    <select>
 		      <option value="0" selected>N/A</option>
@@ -147,7 +144,7 @@
 		      <input type="range" id="test5" min="0" max="100" />
 		    </p>
 	    </div>
-	-->
+
 	    <div class="comment-section">
 	    	<h5>Comments <span class="glyphicon glyphicon-comment" aria-hidden="true"></span></h5>
 

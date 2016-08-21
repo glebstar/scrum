@@ -18,7 +18,7 @@ class ProjMiddleware {
 
 		if ($request->project_id) {
 			$projectId = $request->project_id;
-		} elseif ($request->column) {
+		} elseif ($request->card_id) {
 			$projectId = \App\Cards::where('card_id', $request->card_id)->first()->project_id;
 		} elseif ($request->id) {
 			$projectId = $request->id;
