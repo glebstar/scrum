@@ -14,6 +14,10 @@ class ProjMiddleware {
 	 */
 	public function handle($request, Closure $next)
 	{
+		if (! Auth::user()) {
+			abort(403);
+		}
+
 		$projectId = false;
 
 		if ($request->project_id) {

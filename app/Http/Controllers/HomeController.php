@@ -180,6 +180,11 @@ class HomeController extends Controller {
 		}
 	}
 
+	/**
+	 * Function for change due date on task
+	 *
+	 * @return mixed
+	 */
 	public function changeDue()
 	{
 		$request = Input::all();
@@ -192,7 +197,6 @@ class HomeController extends Controller {
 			$card->card_duedate = $dueDate;
 			$card->save();
 		}
-
 
 		return response ()->json (['response' => 'ok']);
 	}
