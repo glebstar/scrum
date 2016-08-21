@@ -64,9 +64,10 @@
 <script src=" {{ asset('/custom_js/materialize.min.js') }} "></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
 <script src="{{ asset('/datetimepicker/build/jquery.datetimepicker.full.js') }}"></script>
-<script  src="{{ asset('/custom_js/timer.js') }}"></script>
+<script  src="{{ asset('/custom_js/newtimer.js') }}"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script> -->
 <script type="text/javascript">
+	var timers = [];
 	var listHeight = ($('body').height() - ($('header').height() + $('footer').height()) - 90);
 	$( ".add-card" ).click(function() {
 		$(this).addClass('hidden');
@@ -95,6 +96,7 @@
 			});
 
 			card_members[data.new_id] = [];
+			pausedtimers[data.new_id] = 0;
 
 			var textVal = $(_self).find('textarea').val();
 			var insertTarget = $(_self).data('insert');
@@ -142,7 +144,10 @@
 		var html = $(this).parent().find('.item-body').html();
 		var target = $(this).data('target');
 		$(this).parent().remove();
-		$('#'+target).append('<div id="card-number-' + card_id + '" data-column="Doing" class="list-item clearfix"><div class="item-body">'+html+'</div><p class="status-card"><span class="pause pull-left double-status" data-target="todo-lists">Pause</span><span class="timer">00:00:00</span><span class="done pull-right double-status" data-target="done-lists">Done</span></p></div>');
+		$('#'+target).append('<div id="card-number-' + card_id + '" data-column="Doing" class="list-item clearfix"><div class="item-body">'+html+'</div><p class="status-card"><span class="pause pull-left double-status" data-target="todo-lists">Pause</span><span class="timer"><i class="glyphicon-time glyphicon"></i></span><span class="done pull-right double-status" data-target="done-lists">Done</span></p></div>');
+
+		// start timer
+		timers[card_id] = new newtimer($('#card-number-' + card_id + ' .timer'), pausedtimers[card_id]);
 	});	
 
 	$(document).on("click",".double-status",function() {
@@ -159,6 +164,11 @@
 
 		var card_id = $(this).closest('.list-item').attr('id').replace(/^card-number-(\d+)$/, '$1');
 		var _token = $('meta[name="_token"]').attr('content');
+
+		// stop timer
+		pausedtimers[card_id] = timers[card_id].getTime();
+		timers[card_id].stop();
+
 
 		$.post('/changecolumn', {card_id: card_id, column: _column, _token: _token}, function(data){}, 'json');
 
@@ -252,25 +262,15 @@
 	    	
 	    });
 
-	    var timer;
-	    timer = new _timer
-	    (
-	        function(time)
-	        {
-	            if(time == 0)
-	            {
-	                timer.stop();
-	                alert('time out');
-	            }
-	        }
-	    );
-	    timer.reset(0);
-	    timer.mode(1);
+		$('.card-item').each(function(){
+			if ('Doing' == $(this).attr('data-column')) {
+				var thisId = $(this).attr('id');
+				timers[$(this).attr('data-card-id')] = new newtimer($('#' + thisId + ' .timer'), $(this).attr('data-timer-start'));
+			}
+		});
 	});
 	function hideForm(id) {
 		$('#'+id).addClass('hidden');
 		$('#'+id).prev().removeClass('hidden');
 	}
-
-
 </script>

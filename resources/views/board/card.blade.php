@@ -1,4 +1,13 @@
-<div id="card-number-{{ $card->card_id }}" data-column="{{ $card->card_column }}" data-due="{{ date('m-d-Y H:i:s', $card->due_time)}}" class="list-item clearfix">
+<div id="card-number-{{ $card->card_id }}"
+     data-card-id="{{ $card->card_id }}"
+     data-column="{{ $card->card_column }}"
+     data-due="{{ date('m-d-Y H:i:s', $card->due_time)}}"
+     @if($card->card_column == 'Doing')
+     data-timer-start="{{ time() - $card->start_timer }}"
+     @else
+     data-timer-start="0"
+     @endif
+     class="list-item card-item clearfix">
     <div class="item-body">
         <p class="item-title">{{ $card->card_title }}</p>
         <div class="clearfix">
@@ -21,7 +30,7 @@
     @elseif($card->card_column == 'Doing')
         <p class="status-card">
         <span class="pause pull-left double-status" data-target="todo-lists">Pause</span>
-        <span class="timer">00:00:00</span><span class="done pull-right double-status" data-target="done-lists">Done</span>
+        <span id="timer-{{ $card->card_id }}" class="timer"><i class="glyphicon-time glyphicon"></i></span><span class="done pull-right double-status" data-target="done-lists">Done</span>
     </p>
     @elseif($card->card_column == 'Done')
         <div class="status-holder">
@@ -37,6 +46,15 @@
     @foreach($card->members()->get() as $m)
     card_members[{{ $card->card_id }}].push({{$m->user_id}});
     @endforeach
+
+    @if('Todo' == $card->card_column)
+            @if(0 == $card->pause_timer)
+            pausedtimers[{{ $card->card_id }}] = 0;
+            @else
+            pausedtimers[{{ $card->card_id }}] = {{ $card->pause_timer - $card->start_timer }};
+            @endif
+
+    @endif
 </script>
 
 <div id="card-members-{{ $card->card_id }}" class="hidden">

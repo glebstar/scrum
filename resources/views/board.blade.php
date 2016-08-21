@@ -4,6 +4,7 @@
 
 <script>
 	var card_members = [];
+	var pausedtimers = [];
 	var is_manager = @if($isManager) true @else false @endif;
 </script>
 <div class="boards-container">

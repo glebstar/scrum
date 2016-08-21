@@ -140,10 +140,26 @@ class HomeController extends Controller {
 			$card = Cards::where('card_id', $card_details['card_id'])->first();
 			if ($card) {
 				$card->card_column = $card_details['column'];
+				if ('Doing' == $card_details['column']) {
+					// start timer
+					$start = time ();
+					if ($card->pause_timer > 0) {
+						// added old timer
+						$start -= ($card->pause_timer - $card->start_timer);
+					}
+					$card->start_timer = $start;
+					$card->pause_timer = 0;
+				}
+
+				if ('Todo' == $card_details['column']) {
+					// pause timer
+					$card->pause_timer = time();
+				}
+
 				$card->save();
 			}
 
-			return response ()->json (['response' => 'ok']);
+			return response ()->json (['start_timer' => $card->start_timer]);
 		}
 	}
 
