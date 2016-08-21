@@ -31,6 +31,13 @@ class ProjMiddleware {
 			abort(403);
 		}
 
+		if ($request->column == 'Backlog') {
+			$managerId = \App\Projects::where('project_id', $projectId)->first()->project_manager_id;
+			if ($managerId != Auth::user()->id) {
+				abort(403);
+			}
+		}
+
 		return $next($request);
 	}
 }

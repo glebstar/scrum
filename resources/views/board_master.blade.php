@@ -105,7 +105,7 @@
 	$(document).on("click",".list-item .item-body",function() {
 		var card_id = $(this).closest('.list-item').attr('id').replace(/^card-number-(\d+)$/, '$1');
 		$('.backlog-button').hide();
-		if ( $('#card-number-' + card_id).attr('data-column') == 'Done' ) {
+		if ( is_manager && $('#card-number-' + card_id).attr('data-column') == 'Done' ) {
 			$('.backlog-button').show();
 		}
 

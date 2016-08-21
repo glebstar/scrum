@@ -60,6 +60,7 @@ class HomeController extends Controller {
 			'cards' => Cards::where('project_id', $projectId)->get(),
 			'projectId' => $projectId,
 			'members' => User::all(),
+			'isManager' => Auth::user()->id == \App\Projects::where('project_id', $projectId)->first()->project_manager_id
 		]);
 	}
 
