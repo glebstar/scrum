@@ -4,7 +4,6 @@
 
 function newtimer(obj, startTime) {
     var time = startTime;
-    //var status = 1;
     var timerSelf = null;
 
     timerStart(obj);

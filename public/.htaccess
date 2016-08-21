@@ -5,6 +5,10 @@
 
     RewriteEngine On
 
+    RewriteEngine On
+    RewriteCond %{HTTP_HOST} ^www\.(.+) [NC]
+    RewriteRule .* http://%1/$0 [L,R=301]
+
     # Redirect Trailing Slashes...
     RewriteRule ^(.*)/$ /$1 [L,R=301]
 

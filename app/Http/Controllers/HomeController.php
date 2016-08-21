@@ -159,7 +159,7 @@ class HomeController extends Controller {
 				$card->save();
 			}
 
-			return response ()->json (['start_timer' => $card->start_timer]);
+			return response ()->json (['response' => 'ok']);
 		}
 	}
 
