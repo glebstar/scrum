@@ -13,7 +13,6 @@ function newtimer(obj, startTime) {
     }
 
     this.stop = function(){
-        //status = 0;
         clearInterval(timerSelf);
     }
 
