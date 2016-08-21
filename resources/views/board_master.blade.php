@@ -67,7 +67,6 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script> -->
 <script type="text/javascript">
 	var listHeight = ($('body').height() - ($('header').height() + $('footer').height()) - 90);
-	console.log(listHeight);
 	$( ".add-card" ).click(function() {
 		$(this).addClass('hidden');
 		$(this).next().removeClass('hidden');
@@ -77,6 +76,8 @@
 		$(this).parents('.add-card-form').addClass('hidden');
 		$(this).parents('.add-card-form').prev().removeClass('hidden');
 	});
+
+
 	$( ".add-card-form form" ).submit(function( event ) {
 		event.preventDefault();
 
@@ -96,13 +97,18 @@
 
 			var textVal = $(_self).find('textarea').val();
 			var insertTarget = $(_self).data('insert');
-			$('#'+insertTarget).append('<div id="card-number-' + data.new_id + '" class="list-item clearfix"><div class="item-body"><p class="item-title">'+textVal+'</p><div class="clearfix"><div class="title-panel"><span title="Comments" class="glyphicon glyphicon-comment" aria-hidden="true"></span><span class="number">0</span><span title="Description" class="glyphicon glyphicon-tasks" aria-hidden="true"></span><span class="number">0</span><span title="Attachments" class="glyphicon glyphicon-paperclip" aria-hidden="true"></span><span class="number">0</span></div><div class= "item-number pull-right">#<span>'+ data.new_id +'</span></div></div><div class="clearfix"><div class="members-list pull-right clearfix"></div></div></div><p class="start-card" data-target="doing-lists">Start</p></div><div id="card-members-' + data.new_id + '" class="hidden"></div>');
+			$('#'+insertTarget).append('<div id="card-number-' + data.new_id + '" data-column="Todo" class="list-item clearfix"><div class="item-body"><p class="item-title">'+textVal+'</p><div class="clearfix"><div class="title-panel"><span title="Comments" class="glyphicon glyphicon-comment" aria-hidden="true"></span><span class="number">0</span><span title="Description" class="glyphicon glyphicon-tasks" aria-hidden="true"></span><span class="number">0</span><span title="Attachments" class="glyphicon glyphicon-paperclip" aria-hidden="true"></span><span class="number">0</span></div><div class= "item-number pull-right">#<span>'+ data.new_id +'</span></div></div><div class="clearfix"><div class="members-list pull-right clearfix"></div></div></div><p class="start-card" data-target="doing-lists">Start</p></div><div id="card-members-' + data.new_id + '" class="hidden"></div>');
 			hideForm($(_self).data('target'));
 		}, 'json');
 	});
 
 	$(document).on("click",".list-item .item-body",function() {
 		var card_id = $(this).closest('.list-item').attr('id').replace(/^card-number-(\d+)$/, '$1');
+		$('.backlog-button').hide();
+		if ( $('#card-number-' + card_id).attr('data-column') == 'Done' ) {
+			$('.backlog-button').show();
+		}
+
 		$('#members-dropdown').attr('data-card-id', card_id);
 		$('#members-dropdown .inputs').html('');
 		$('#members-dropdown .inputs').append('<select id="members-select" multiple></select>');
@@ -128,7 +134,7 @@
 		var html = $(this).parent().find('.item-body').html();
 		var target = $(this).data('target');
 		$(this).parent().remove();
-		$('#'+target).append('<div id="card-number-' + card_id + '" class="list-item clearfix"><div class="item-body">'+html+'</div><p class="status-card"><span class="pause pull-left double-status" data-target="todo-lists">Pause</span><span class="timer">00:00:00</span><span class="done pull-right double-status" data-target="done-lists">Done</span></p></div>');
+		$('#'+target).append('<div id="card-number-' + card_id + '" data-column="Doing" class="list-item clearfix"><div class="item-body">'+html+'</div><p class="status-card"><span class="pause pull-left double-status" data-target="todo-lists">Pause</span><span class="timer">00:00:00</span><span class="done pull-right double-status" data-target="done-lists">Done</span></p></div>');
 	});	
 
 	$(document).on("click",".double-status",function() {
@@ -149,8 +155,20 @@
 		$.post('/changecolumn', {card_id: card_id, column: _column, _token: _token}, function(data){}, 'json');
 
 	   	$(this).parents('.list-item').remove();
-	    $('#'+target).append('<div id="card-number-' + card_id + '" class="list-item clearfix"><div class="item-body">'+html+'</div>'+cardTarget+'</div>');
-	});	
+	    $('#'+target).append('<div id="card-number-' + card_id + '" data-column="' + _column + '" class="list-item clearfix"><div class="item-body">'+html+'</div>'+cardTarget+'</div>');
+	});
+
+	$(document).on('click', '#to-backlog-btn', function(){
+		var _token = $('meta[name="_token"]').attr('content');
+		var card_id = $('#members-dropdown').attr('data-card-id');
+		$.post('/changecolumn', {card_id: card_id, column: 'Backlog', _token: _token}, function(data){}, 'json');
+
+		$('#card-display').modal('hide');
+		var html = $('#card-number-' + card_id + ' .item-body').html();
+		$('#card-number-' + card_id).remove();
+		$('#backlog-lists').append('<div id="card-number-' + card_id + '" data-column="Backlog" class="list-item clearfix"><div class="item-body">'+html+'</div></div>');
+
+	});
 
 	$(document).on('change','#members-dropdown', function(){
 		var _token = $('meta[name="_token"]').attr('content');

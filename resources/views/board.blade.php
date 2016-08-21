@@ -131,6 +131,7 @@
                 </span>
             </div>
 	    </div>
+	<!--
 	    <div class="input-field col s12" id="priority">
 		    <select>
 		      <option value="0" selected>N/A</option>
@@ -138,13 +139,14 @@
 		    </select>
 		    <label>Priority</label>
 	    </div>
+
 	    <div class="input-field col s12">
 	    	<p class="weight">Weight</p>
 		    <p class="range-field">
 		      <input type="range" id="test5" min="0" max="100" />
 		    </p>
 	    </div>
-
+	-->
 	    <div class="comment-section">
 	    	<h5>Comments <span class="glyphicon glyphicon-comment" aria-hidden="true"></span></h5>
 
@@ -160,6 +162,9 @@
 	    		<textarea></textarea>
 	    		<button id="add-comment">Add comment</button>
 	    	</div>
+	    </div>
+		<div class="backlog-button">
+	    	<button class="btn btn-info" id="to-backlog-btn" style="margin-top: 20px;">To Backlog</button>
 	    </div>
       </div>
     </div><!-- /.modal-content -->
