@@ -65,6 +65,6 @@
 
 <div id="card-comments-{{ $card->card_id }}" class="hidden">
     @foreach($card->comments()->orderBy('id')->get() as $c)
-        <div class="comment"><div class="members-list"><span class="member" title="Bob">{{ substr(\App\User::find($c->user_id)->name, 0, 1) }}</span></div><p>{{ $c->comment }}</p></div>
+        <div class="comment"><div class="members-list"><span class="member" title="{{ \App\User::find($c->user_id)->name }}">{{ substr(\App\User::find($c->user_id)->name, 0, 1) }}</span></div><p>{{ $c->comment }}</p></div>
     @endforeach
 </div>
