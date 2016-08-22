@@ -10,25 +10,12 @@
 
 <div class="boards-container">
 	<div class="row">
-		@include('board.column', [
-			'columnName' => 'Todo',
-			'cards' => $cards,
-		])
-
-		@include('board.column', [
-			'columnName' => 'Doing',
-			'cards' => $cards,
-		])
-
-		@include('board.column', [
-			'columnName' => 'Done',
-			'cards' => $cards,
-		])
-
-		@include('board.column', [
-			'columnName' => 'Backlog',
-			'cards' => $cards,
-		])
+		@foreach(['Todo', 'Doing', 'Done', 'Backlog'] as $column)
+			@include('board.column', [
+				'columnName' => $column,
+				'cards' => $cards,
+			])
+		@endforeach
 	</div>
 </div>
 
@@ -41,5 +28,4 @@
             <option data-member-id="{{ $user->id }}" value="{{ $user->id }}">{{ $user->name }}</option>
     @endforeach
 </div>
-
 @endsection
