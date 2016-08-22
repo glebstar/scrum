@@ -6,7 +6,7 @@ class Cards extends Model {
 
 	protected $primaryKey = 'card_id';
 	protected $table = 'cards';
-	protected $fillable = ['prject_name']; 
+	protected $fillable = ['project_name'];
 	public $timestamps = false;
 
 	/**
