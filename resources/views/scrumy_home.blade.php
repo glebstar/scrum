@@ -9,6 +9,8 @@
 					<div class="panel-heading scrumy-panel">Projects</div>
 					<div class="panel-body charts_container" id= "charts_container">
 						<script type="text/javascript">
+							var boardUrl = '{{URL::to('board')}}';
+
 							$a =  document.getElementById("aUser").value;
 							var data2 = <?php echo json_encode($user); ?>;
 								for (var i = 0; i < data2.length; i++) {

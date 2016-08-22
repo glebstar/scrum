@@ -38,7 +38,7 @@ window.onload = function () {
                     horizontalAlign: "left", // "center" , "right"
                     verticalAlign: "center",  // "top" , "bottom"
                     fontSize: 15,
-                    href: "{{URL::to('board')}}/" + project_id,
+                    href: boardUrl + '/' + project_id,
                     itemclick: function(e){
                         window.location = $(this).attr('href');
                     }
