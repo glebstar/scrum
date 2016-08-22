@@ -40,7 +40,7 @@ $( ".add-card-form form" ).submit(function( event ) {
 
         var textVal = $(_self).find('textarea').val();
         var insertTarget = $(_self).data('insert');
-        $('#'+insertTarget).append('<div id="card-number-' + data.new_id + '" data-column="Todo" class="list-item clearfix"><div class="item-body"><p class="item-title">'+textVal+'</p><div class="clearfix"><div class="title-panel"><span title="Comments" class="glyphicon glyphicon-comment" aria-hidden="true"></span><span class="number">0</span><span title="Description" class="glyphicon glyphicon-tasks" aria-hidden="true"></span><span class="number">0</span><span title="Attachments" class="glyphicon glyphicon-paperclip" aria-hidden="true"></span><span class="number">0</span></div><div class= "item-number pull-right">#<span>'+ data.new_id +'</span></div></div><div class="clearfix"><div class="members-list pull-right clearfix"></div></div></div><p class="start-card" data-target="doing-lists">Start</p></div><div id="card-members-' + data.new_id + '" class="hidden"></div>');
+        $('#'+insertTarget).append('<div id="card-number-' + data.new_id + '" data-column="Todo" class="list-item clearfix"><div class="item-body"><p class="item-title">'+textVal+'</p><div class="clearfix"><div class="title-panel"><span title="Comments" class="glyphicon glyphicon-comment" aria-hidden="true"></span><span class="number">0</span><span title="Description" class="glyphicon glyphicon-tasks" aria-hidden="true"></span><span class="number">0</span><span title="Attachments" class="glyphicon glyphicon-paperclip" aria-hidden="true"></span><span class="number">0</span></div><div class= "item-number pull-right">#<span>'+ data.new_id +'</span></div></div><div class="clearfix"><div class="members-list pull-right clearfix"></div></div></div><p class="start-card" data-target="doing-lists">Start</p></div><div id="card-members-' + data.new_id + '" class="hidden"></div><div id="card-comments-' + data.new_id +'" class="hidden"></div>');
         hideForm($(_self).data('target'));
     }, 'json');
 });
@@ -69,6 +69,9 @@ $(document).on("click",".list-item .item-body",function() {
     $('select').val(card_members[card_id]).material_select();
 
     $('#card-display .members-list.members-dp').html($('#card-members-' + card_id).html());
+
+    // add comments
+    $('#card-display .comments-list').html( $('#card-comments-' + card_id).html() );
 
     $('#card-display').modal('show');
     var number = $(this).find('.item-number span').html();
@@ -201,13 +204,22 @@ jQuery(document).on('click','.status-holder .change-status p', function(){
     jQuery(this).parent().addClass('hidden');
 });
 
+/**
+ * add new comment
+ */
 $(document).on("click","#add-comment",function() {
+    var _token = $('meta[name="_token"]').attr('content');
+    var card_id = $('#members-dropdown').attr('data-card-id');
+
     var msg = $(this).parent().find('textarea').val();
     var user = $(this).parent().find('.members-list').html();
 
     $(this).parent().find('textarea').val('');
-    if(msg!='') {
-        $('#card-display .comments-list').append('<div class="comment"><div class="members-list">'+user+'</div><p>'+msg+'</p></div>');
+    if ('' != msg) {
+        $.post('/addcommment', {card_id: card_id, comment: msg, _token: _token}, function(data){}, 'json');
+        
+        $('#card-display .comments-list').append('<div class="comment"><div class="members-list">' + user + '</div><p>' + msg + '</p></div>');
+        $('#card-comments-' + card_id).append('<div class="comment"><div class="members-list">' + user + '</div><p>' + msg + '</p></div>');
     }
 });
 

@@ -29,4 +29,5 @@ Route::group(['middleware' => 'proj'], function(){
 	Route::post('changecolumn','HomeController@changeColumn');
 	Route::post('changemembers','HomeController@changeMembers');
 	Route::post('changedue','HomeController@changeDue');
+	Route::post('addcommment','HomeController@addComment');
 });

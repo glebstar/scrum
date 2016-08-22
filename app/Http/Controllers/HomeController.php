@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Project_members;
 use App\User;
 use App\Projects;
@@ -204,5 +205,27 @@ class HomeController extends Controller
         }
 
         return response ()->json (['response' => 'ok']);
+    }
+
+    /**
+     * Function for add new comment
+     *
+     * @return mixed
+     */
+    public function addComment()
+    {
+        if (Request::ajax ()) {
+            $request = Request::all();
+
+            if (isset($request['comment']) && $request['comment']) {
+                $comment          = new Comment();
+                $comment->card_id = $request['card_id'];
+                $comment->user_id = Auth::user ()->id;
+                $comment->comment = $request['comment'];
+                $comment->save ();
+            }
+
+            return response ()->json (['response' => 'ok']);
+        }
     }
 }

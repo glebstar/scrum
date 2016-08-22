@@ -18,4 +18,14 @@ class Cards extends Model {
 	{
 		return $this->hasMany('App\Card_members', 'card_id', 'card_id');
 	}
+
+	/**
+	 * Function get a comments for task
+	 *
+	 * @return mixed
+	 */
+	public function comments()
+	{
+		return $this->hasMany('App\Comment', 'card_id', 'card_id');
+	}
 }

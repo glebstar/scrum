@@ -257,6 +257,7 @@ class ComposerStaticInit3277d790cf5ef1b42ea4016b98bc58fd
         'CreateCardFilesTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_26_162051_create_card_files_table.php',
         'CreateCardMembersTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_26_162042_create_card_members_table.php',
         'CreateCardsTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_26_160516_create_cards_table.php',
+        'CreateCommentsTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_21_231134_create_comments_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateProjectMembersTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_16_152241_create_project_members_table.php',
         'CreateProjectsTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_03_144921_create_projects_table.php',

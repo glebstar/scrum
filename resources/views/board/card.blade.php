@@ -62,3 +62,9 @@
         <span class="member" title="{{ $m->user()->getResults()->name }}"><?php echo substr($m->user()->getResults()->name, 0, 1); ?></span>
     @endforeach
 </div>
+
+<div id="card-comments-{{ $card->card_id }}" class="hidden">
+    @foreach($card->comments()->get() as $c)
+        <div class="comment"><div class="members-list"><span class="member" title="Bob">{{ substr(\App\User::find($c->user_id)->name, 0, 1) }}</span></div><p>{{ $c->comment }}</p></div>
+    @endforeach
+</div>
