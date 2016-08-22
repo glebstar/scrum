@@ -3,8 +3,10 @@ window.onload = function () {
         data2[i]['todo'] = data2[i]['todo'].toString();
         data2[i]['doing'] = data2[i]['doing'].toString();
         data2[i]['done'] = data2[i]['done'].toString();
+
         var project_id = data2[i]['project_id'];
         var productivity_chart = "productivity_chart".concat(i);
+
         if(data2[i]['todo']!= 0 && data2[i]['doing']!= 0 && data2[i]['done']!= 0){
             var chart = new CanvasJS.Chart(productivity_chart, {
                 title:{
@@ -27,8 +29,7 @@ window.onload = function () {
                     }
                 ]
             });
-        }
-        else {
+        } else {
             var chart = new CanvasJS.Chart(productivity_chart, {
                 title:{
                     text: data2[i]['project_name']
@@ -64,7 +65,7 @@ window.onload = function () {
         chart.render();
     }
 }
+
 function onClick(e){
     return false;
-    //window.location="{{URL::to('board')}}";
 }

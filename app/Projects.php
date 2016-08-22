@@ -9,10 +9,16 @@ class Projects extends Model
 
     protected     $table      = 'projects';
     protected     $fillable   = ['project_name, to_do'];
+    
     static public $rules      = [
         'project_name' => 'required',
     ];
 
+    /**
+     * Attributes for serializen
+     *
+     * @var array
+     */
     protected $appends = ['todo', 'doing', 'done'];
 
     static function setRules()
@@ -30,6 +36,11 @@ class Projects extends Model
         return $this->hasMany('App\Project_members', 'project_id', 'project_id');
     }
 
+    /**
+     * Attribute for serializen
+     *
+     * @return mixed
+     */
     public function getTodoAttribute()
     {
         return $this->attributes['todo'] = Cards::where('project_id', $this->project_id)
@@ -38,6 +49,11 @@ class Projects extends Model
             ->count();
     }
 
+    /**
+     * Attribute for serializen
+     *
+     * @return mixed
+     */
     public function getDoingAttribute()
     {
         return $this->attributes['doing'] = Cards::where('project_id', $this->project_id)
@@ -46,6 +62,11 @@ class Projects extends Model
             ->count();
     }
 
+    /**
+     * Attribute for serializen
+     *
+     * @return mixed
+     */
     public function getDoneAttribute()
     {
         return $this->attributes['done'] = Cards::where('project_id', $this->project_id)
