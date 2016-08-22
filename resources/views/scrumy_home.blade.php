@@ -86,9 +86,7 @@ window.onload = function () {
 				 		indexLabelFontColor: "#fafafa",
 						click: onClick,
 						dataPoints: [
-							{ label: "to-do",  y: data2[i]['todo'],indexLabel : data2[i]['todo']},
-							{ label: "doing", y: data2[i]['doing'],indexLabel : data2[i]['doing']},
-							{ label: "done", y: data2[i]['done'],indexLabel : data2[i]['done']}
+							{ label: "to-do",  y: data2[i]['todo'],indexLabel : data2[i]['todo']}
 						]
 					}
 					]
