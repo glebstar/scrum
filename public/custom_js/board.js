@@ -220,6 +220,11 @@ $(document).on("click","#add-comment",function() {
         
         $('#card-display .comments-list').append('<div class="comment"><div class="members-list">' + user + '</div><p>' + msg + '</p></div>');
         $('#card-comments-' + card_id).append('<div class="comment"><div class="members-list">' + user + '</div><p>' + msg + '</p></div>');
+
+        // count comments
+        var count = parseInt($('#card-count-comments-' + card_id).html());
+        count++;
+        $('#card-count-comments-' + card_id).html(count);
     }
 });
 
