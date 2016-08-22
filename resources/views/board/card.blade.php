@@ -13,7 +13,7 @@
         <div class="clearfix">
             <div class="title-panel">
                 <span title="Comments" class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-                <span class="number">0</span>
+                <span class="number">{{ $card->comments()->count() }}</span>
                 <span title="Description" class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
                 <span class="number">0</span>
                 <span title="Attachments" class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
