@@ -35,7 +35,7 @@ window.onload = function () {
 	for (var i = 0; i < data2.length; i++) {
 		var project_id = data2[i]['project_id'];
 		var productivity_chart = "productivity_chart".concat(i);
-			if(data2[i]['to_do']!= 0 && data2[i]['doing']!= 0 && data2[i]['done']!= 0){
+			if(data2[i]['todo']!= 0 && data2[i]['doing']!= 0 && data2[i]['done']!= 0){
 				var chart = new CanvasJS.Chart(productivity_chart, {
 
 					title:{
@@ -51,16 +51,15 @@ window.onload = function () {
 				 		indexLabelFontColor: "#fafafa",
 						click: onClick,
 						dataPoints: [
-							{ label: "to-do",  y: data2[i]['to_do'],indexLabel : data2[i]['to_do']},
+							{ label: "to-do",  y: data2[i]['todo'],indexLabel : data2[i]['todo']},
 							{ label: "doing", y: data2[i]['doing'],indexLabel : data2[i]['doing']},
-							{ label: "done", y: data2[i]['done'],indexLabel : data2[i]['done']},
-				
+							{ label: "done", y: data2[i]['done'],indexLabel : data2[i]['done']}
 						]
 					}
 					]
 				});
 			}	
-			else if(data2[i]['to_do']== 0 && data2[i]['doing']== 0 && data2[i]['done']== 0){
+			else {
 				var chart = new CanvasJS.Chart(productivity_chart, {
 					title:{
 						text: data2[i]['project_name']              
@@ -87,7 +86,9 @@ window.onload = function () {
 				 		indexLabelFontColor: "#fafafa",
 						click: onClick,
 						dataPoints: [
-							{ label: "to-do",  y: data2[i]['to_do'],indexLabel : data2[i]['to_do']},
+							{ label: "to-do",  y: data2[i]['todo'],indexLabel : data2[i]['todo']},
+							{ label: "doing", y: data2[i]['doing'],indexLabel : data2[i]['doing']},
+							{ label: "done", y: data2[i]['done'],indexLabel : data2[i]['done']}
 						]
 					}
 					]

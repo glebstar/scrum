@@ -263,6 +263,7 @@ class ComposerStaticInit3277d790cf5ef1b42ea4016b98bc58fd
         'CreateProjectsTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_03_144921_create_projects_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
+        'DropProjectColumns' => __DIR__ . '/../..' . '/database/migrations/2016_08_22_050201_drop_project_columns.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',
