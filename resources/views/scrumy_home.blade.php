@@ -33,6 +33,9 @@
 <script type="text/javascript">
 window.onload = function () {
 	for (var i = 0; i < data2.length; i++) {
+		data2[i]['todo'] = data2[i]['todo'].toString();
+		data2[i]['doing'] = data2[i]['doing'].toString();
+		data2[i]['done'] = data2[i]['done'].toString();
 		var project_id = data2[i]['project_id'];
 		var productivity_chart = "productivity_chart".concat(i);
 			if(data2[i]['todo']!= 0 && data2[i]['doing']!= 0 && data2[i]['done']!= 0){

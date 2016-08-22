@@ -32,7 +32,7 @@ class Projects extends Model
 
     public function getTodoAttribute()
     {
-        return $this->attributes['todo'] = (string)Cards::where('project_id', $this->project_id)
+        return $this->attributes['todo'] = Cards::where('project_id', $this->project_id)
             ->where('card_column', 'Todo')
             ->where('card_duedate', '>', date('Y-m-d H:i:s'))
             ->count();
@@ -40,7 +40,7 @@ class Projects extends Model
 
     public function getDoingAttribute()
     {
-        return $this->attributes['doing'] = (string)Cards::where('project_id', $this->project_id)
+        return $this->attributes['doing'] = Cards::where('project_id', $this->project_id)
             ->where('card_column', 'Doing')
             ->where('card_duedate', '>', date('Y-m-d H:i:s'))
             ->count();
@@ -48,7 +48,7 @@ class Projects extends Model
 
     public function getDoneAttribute()
     {
-        return $this->attributes['done'] = (string)Cards::where('project_id', $this->project_id)
+        return $this->attributes['done'] = Cards::where('project_id', $this->project_id)
             ->where('card_column', 'Done')
             ->where('card_duedate', '>', date('Y-m-d H:i:s'))
             ->count();
