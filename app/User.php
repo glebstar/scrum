@@ -43,7 +43,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		$projects = new Collection();
 
 		foreach ($members as $member) {
-			$projects->add ($member->project()->getResults());
+			$project = $member->project()->getResults();
+
+			if ($project) {
+				$projects->add ($project);
+			}
 		}
 
 		return $projects;
