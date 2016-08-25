@@ -14,4 +14,9 @@ class Card_members extends Model {
     {
         return $this->hasOne('App\User', 'id', 'user_id');
     }
+
+    public function cards()
+    {
+        return $this->hasMany('App\Cards', 'card_id', 'card_id');
+    }
 }

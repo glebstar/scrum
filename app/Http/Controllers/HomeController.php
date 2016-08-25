@@ -42,7 +42,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view ('scrumy_home', ['user' => Auth::user ()->projects ()]);
+        return view ('scrumy_home', [
+            'user' => Auth::user ()->projects (),
+            'cards' => Auth::user()->getCards()
+        ]);
     }
 
     public function register()

@@ -52,4 +52,23 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 		return $projects;
 	}
+	
+	public function cardMembers()
+	{
+		return $this->hasMany('App\Card_members', 'user_id', 'id');
+	}
+
+	public function getCards()
+	{
+		$userCards = [];
+		$userMember = $this->cardMembers()->get();
+		foreach ($userMember as $m) {
+			$cards = $m->cards()->get();
+			foreach ($cards as $c) {
+				$userCards[] = $c;
+			}
+		}
+
+		return $userCards;
+	}
 }
