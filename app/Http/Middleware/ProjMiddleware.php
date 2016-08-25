@@ -50,7 +50,7 @@ class ProjMiddleware
         }
 
         // check rights manager
-        if ($request->column == 'Backlog') {
+        if ($request->column == 'Backlog' || $request->card_title) {
             $managerId = Projects::where ('project_id', $projectId)->first ()->project_manager_id;
             if ($managerId != Auth::user ()->id) {
                 abort (403);

@@ -18,7 +18,7 @@
 			@endforeach
 		</div>
 		@if($columnName == 'Todo')
-		<p class="add-card">Add a task</p>
+		<p class="add-card hidden">Add a task</p>
 		<div class="add-card-form hidden" id="todo-list-form">
 			<form data-target="todo-list-form" data-insert="todo-lists">
 				<textarea id="card_title" name="card_title" placeholder="Add a card" required></textarea>

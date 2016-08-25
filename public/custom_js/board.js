@@ -244,6 +244,10 @@ $(document).ready(function($) {
             timers[$(this).attr('data-card-id')] = new newtimer($('#' + thisId + ' .timer'), $(this).attr('data-timer-start'));
         }
     });
+
+    if(is_manager) {
+        $('p.add-card').removeClass('hidden');
+    }
 });
 
 function hideForm(id) {
